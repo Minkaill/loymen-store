@@ -1,0 +1,17 @@
+{
+  "name": "loymen",
+  "author": "mklhdv",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "develop:backend": "yarn --cwd backend develop",
+    "develop:frontend": "wait-on http://localhost:1337/admin && yarn --cwd frontend dev",
+    "develop": "cross-env FORCE_COLOR=1 npm-run-all -l -p develop:*",
+    "inst": "yarn install && cd frontend && yarn install && cd .. && cd backend && yarn install"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "npm-run-all": "^4.1.5",
+    "wait-on": "^7.0.1"
+  }
+}
