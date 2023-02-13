@@ -1,0 +1,35 @@
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 200;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  a {
+    margin-left: 15px;
+  }
+}
+
+.logo {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+
+  h1 {
+    color: rgba(40, 93, 161, 1);
+    font-weight: 200;
+  }
+}
+
+.user_nav {
+  width: 400px;
+  display: flex;
+  justify-content: right;
+  img {
+    margin-left: 15px;
+  }
+}
