@@ -4,17 +4,21 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./login.module.scss";
 import { login } from "../../redux/slice/authSlice";
 import { useNavigate } from "react-router-dom";
+import { userData } from "../../helper";
 
 const Login = () => {
+  const { jwt } = userData();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const data = useSelector((state) => state.auth.data);
+
+  React.useEffect(() => {
+    if (!jwt) navigate("/register");
+  }, [jwt]);
 
   const [user, setUser] = React.useState({
     identifier: "",
     password: "",
   });
-  console.log(user);
 
   const handleUserChange = ({ target }) => {
     const { name, value } = target;
@@ -33,8 +37,14 @@ const Login = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = () => {
-    dispatch(login(user));
+  const onSubmit = async () => {
+    const request = await dispatch(login(user));
+    if (!request.payload.jwt) {
+      alert("Не удалось авторизоваться!");
+    }
+    if (request.payload.jwt) {
+      navigate("/");
+    }
     reset();
   };
 

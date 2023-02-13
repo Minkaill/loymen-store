@@ -1,14 +1,20 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { userData } from "../../helper";
 import { regist } from "../../redux/slice/authSlice";
 import styles from "./register.module.scss";
 
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const data = useSelector((state) => state.auth.data);
+  const { jwt } = userData();
+
+  React.useEffect(() => {
+    if (jwt) navigate("/login");
+    if (!jwt) navigate("/register");
+  }, [jwt]);
 
   const [user, setUser] = React.useState({
     username: "",
@@ -35,8 +41,12 @@ const Register = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = () => {
-    dispatch(regist(user));
+  const onSubmit = async () => {
+    const request = await dispatch(regist(user));
+    console.log(request);
+    if (!request.payload.jwt) {
+      alert("Не удалось зарегистрироваться!");
+    }
     reset();
   };
 

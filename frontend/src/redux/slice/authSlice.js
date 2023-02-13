@@ -32,6 +32,21 @@ export const regist = createAsyncThunk("/register", async (params) => {
       "http://localhost:1337/api/auth/local/register",
       params
     );
+    if (data.jwt) {
+      storeUser(data);
+    }
+    return data;
+  } catch (error) {
+    console.warn({
+      error: error?.message,
+    });
+    alert(error);
+  }
+});
+
+export const authMe = createAsyncThunk("/authMe", async () => {
+  try {
+    const { data } = await axios.get("http://localhost:1337/api/users/me");
     return data;
   } catch (error) {
     console.warn({
@@ -71,8 +86,23 @@ const authSlice = createSlice({
       .addCase(regist.rejected, (state, action) => {
         state.error = action.payload;
         state.status = "loading";
+      })
+
+      .addCase(authMe.pending, (state) => {
+        state.data = null;
+        state.status = "loading";
+      })
+      .addCase(authMe.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.status = "loaded";
+      })
+      .addCase(authMe.rejected, (state, action) => {
+        state.error = action.payload;
+        state.status = "loading";
       });
   },
 });
+
+export const selectAuth = (state) => Boolean(state.auth.data);
 
 export const authReducer = authSlice.reducer;

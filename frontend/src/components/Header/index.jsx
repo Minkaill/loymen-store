@@ -21,12 +21,18 @@ const Header = () => {
       </div>
 
       <div className={styles.user_nav}>
-        <img width={25} src={search} alt="" />
+        <Link>
+          <img width={25} src={search} alt="" />
+        </Link>
         <Link to="/login">
           <img width={25} src={user} alt="" />
         </Link>
-        <img width={25} src={fav} alt="" />
-        <img width={25} src={cart} alt="" />
+        <Link>
+          <img width={25} src={fav} alt="" />
+        </Link>
+        <Link>
+          <img width={25} src={cart} alt="" />
+        </Link>
       </div>
     </header>
   );

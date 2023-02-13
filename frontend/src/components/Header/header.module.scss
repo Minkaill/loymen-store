@@ -30,7 +30,11 @@ nav {
   width: 400px;
   display: flex;
   justify-content: right;
-  img {
+  align-items: center;
+  a {
     margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
