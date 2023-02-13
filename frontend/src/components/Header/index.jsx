@@ -17,12 +17,14 @@ const Header = () => {
       </nav>
 
       <div className={styles.logo}>
-        <h1>LOYMEN</h1>
+        <Link to="/">LOYMEN</Link>
       </div>
 
       <div className={styles.user_nav}>
         <img width={25} src={search} alt="" />
-        <img width={25} src={user} alt="" />
+        <Link to="/login">
+          <img width={25} src={user} alt="" />
+        </Link>
         <img width={25} src={fav} alt="" />
         <img width={25} src={cart} alt="" />
       </div>

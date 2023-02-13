@@ -1,20 +1,21 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./login.module.scss";
-import { login } from "../../redux/slice/authSlice";
 import { useNavigate } from "react-router-dom";
+import { regist } from "../../redux/slice/authSlice";
+import styles from "./register.module.scss";
 
-const Login = () => {
+const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => state.auth.data);
 
   const [user, setUser] = React.useState({
-    identifier: "",
+    username: "",
+    phoneNumber: "",
+    email: "",
     password: "",
   });
-  console.log(user);
 
   const handleUserChange = ({ target }) => {
     const { name, value } = target;
@@ -23,6 +24,7 @@ const Login = () => {
       [name]: value,
     }));
   };
+  console.log(user);
 
   const {
     register,
@@ -34,7 +36,7 @@ const Login = () => {
   });
 
   const onSubmit = () => {
-    dispatch(login(user));
+    dispatch(regist(user));
     reset();
   };
 
@@ -42,11 +44,11 @@ const Login = () => {
     <div className={styles.auth}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          type="email"
-          placeholder="email"
-          name="identifier"
-          value={user.identifier}
-          {...register("identifier", {
+          type="text"
+          placeholder="username"
+          name="username"
+          value={user.username}
+          {...register("username", {
             required: "Поле обязательно к заполнению",
             minLength: {
               value: 5,
@@ -56,9 +58,45 @@ const Login = () => {
           onChange={handleUserChange}
         />
         <div className={styles.error}>
-          {errors?.identifier && (
-            <p>{errors?.identifier?.message || "Error!"}</p>
+          {errors?.username && <p>{errors?.username?.message || "Error!"}</p>}
+        </div>
+
+        <input
+          type="number"
+          placeholder="phone number"
+          name="phoneNumber"
+          value={user.phoneNumber}
+          {...register("phoneNumber", {
+            required: "Поле обязательно к заполнению",
+            minLength: {
+              value: 5,
+              message: "Минимум 5 символов",
+            },
+          })}
+          onChange={handleUserChange}
+        />
+        <div className={styles.error}>
+          {errors?.phoneNumber && (
+            <p>{errors?.phoneNumber?.message || "Error!"}</p>
           )}
+        </div>
+
+        <input
+          type="email"
+          placeholder="email"
+          value={user.email}
+          name="email"
+          {...register("email", {
+            required: "Поле обязательно к заполнению",
+            minLength: {
+              value: 5,
+              message: "Минимум 5 символов",
+            },
+          })}
+          onChange={handleUserChange}
+        />
+        <div className={styles.error}>
+          {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
         </div>
 
         <input
@@ -86,4 +124,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
