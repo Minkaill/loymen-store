@@ -24,8 +24,8 @@ const Header = () => {
         <Link>
           <img width={25} src={search} alt="" />
         </Link>
-        <Link to="/login">
-          <img width={25} src={user} alt="" />
+        <Link to="/personal-cabinet">
+          <img src={user} alt="user" />
         </Link>
         <Link>
           <img width={25} src={fav} alt="" />

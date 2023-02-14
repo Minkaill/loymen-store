@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./login.module.scss";
 import { login } from "../../redux/slice/authSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userData } from "../../helper";
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (!jwt) navigate("/register");
+    if (jwt) navigate("/");
   }, [jwt]);
 
   const [user, setUser] = React.useState({
@@ -34,7 +34,7 @@ const Login = () => {
     handleSubmit,
     reset,
   } = useForm({
-    mode: "onBlur",
+    mode: "onBlue",
   });
 
   const onSubmit = async () => {
@@ -92,6 +92,10 @@ const Login = () => {
           Отправить
         </button>
       </form>
+      <div className={styles.regist}>
+        <h1>Нет аккаунта?</h1>
+        <Link to="/register">Зарегистрируйтесь</Link>
+      </div>
     </div>
   );
 };

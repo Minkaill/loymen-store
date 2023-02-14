@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userData } from "../../helper";
 import { regist } from "../../redux/slice/authSlice";
 import styles from "./register.module.scss";
@@ -130,6 +130,10 @@ const Register = () => {
           Отправить
         </button>
       </form>
+      <div className={styles.regist}>
+        <h1>Уже есть аккаунт?</h1>
+        <Link to="/login">Войдите</Link>
+      </div>
     </div>
   );
 };

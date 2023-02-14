@@ -1,69 +1,85 @@
 .auth {
-    width: 800px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+  height: 80vh;
+
+  form {
+    width: 100%;
+    height: 40%;
     display: flex;
-    justify-content: center;
-    margin: auto;
-    align-items: center;
-    height: 80vh;
-  
-    form {
-      width: 100%;
-      height: 40%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-  
-      input {
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        border-bottom: 0.5px solid #c6c5c5;
-        height: 25px;
-        font-size: 16px;
-        font-weight: 200;
-        outline: none;
-        &::placeholder {
-          font-size: 14px;
-          color: #b8b7b7;
-        }
+    flex-direction: column;
+    justify-content: space-between;
+
+    input {
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: 0.5px solid #c6c5c5;
+      height: 25px;
+      font-size: 16px;
+      font-weight: 200;
+      outline: none;
+      &::placeholder {
+        font-size: 14px;
+        color: #b8b7b7;
       }
-  
-      button {
-        border: 0.5px solid rgba(110, 156, 159, 1);
-        background-color: inherit;
+    }
+
+    button {
+      border: 0.5px solid rgba(110, 156, 159, 1);
+      background-color: inherit;
+      height: 40px;
+      display: flex;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      color: rgba(110, 156, 159, 1);
+      transition-duration: 0.3s;
+
+      &:hover {
+        background-color: rgba(110, 156, 159, 1);
+        transition-duration: 0.3s;
+        color: white;
+      }
+
+      &:disabled {
+        border: none;
+        background-color: #d6d6d6;
         height: 40px;
         display: flex;
-        cursor: pointer;
         justify-content: center;
+        cursor: no-drop;
         align-items: center;
         font-size: 18px;
-        color: rgba(110, 156, 159, 1);
-        transition-duration: 0.3s;
-  
-        &:hover {
-          background-color: rgba(110, 156, 159, 1);
-          transition-duration: 0.3s;
-          color: white;
-        }
-  
-        &:disabled {
-          border: none;
-          background-color: #d6d6d6;
-          height: 40px;
-          display: flex;
-          justify-content: center;
-          cursor: no-drop;
-          align-items: center;
-          font-size: 18px;
-          color: #b8b7b7;
-        }
+        color: #b8b7b7;
       }
     }
-  
-    .error {
-      color: rgb(255, 0, 0);
-      font-size: 12px;
-      height: 30px;
+  }
+
+  .error {
+    color: rgb(255, 0, 0);
+    font-size: 12px;
+    height: 30px;
+  }
+
+  .regist {
+    width: 270px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
+    h1 {
+      font-size: 18px;
+      font-weight: 100;
+    }
+
+    a {
+      color: blue;
     }
   }
-  
+}

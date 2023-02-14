@@ -1,6 +1,7 @@
 .auth {
   width: 800px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin: auto;
   align-items: center;
@@ -64,5 +65,21 @@
     color: rgb(255, 0, 0);
     font-size: 12px;
     height: 30px;
+  }
+
+  .regist {
+    width: 220px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
+    h1 {
+      font-size: 18px;
+      font-weight: 100;
+    }
+
+    a {
+      color: blue;
+    }
   }
 }

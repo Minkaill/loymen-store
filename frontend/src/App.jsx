@@ -6,15 +6,20 @@ import Home from "./pages/Home/index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Protector, userData } from "./helper";
+import Logout from "./pages/Logout";
+import PersonalCabinet from "./pages/PersonalCabinet/index";
 
 function App() {
+  const { jwt } = userData();
   return (
     <div className="app">
-      <Header />
+      <Header jwt={jwt} />
       <Routes>
-        <Route path="/" element={<Protector Component={<Home />} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/personal-cabinet" element={<PersonalCabinet />} />
       </Routes>
     </div>
   );
