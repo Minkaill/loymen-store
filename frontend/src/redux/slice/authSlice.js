@@ -10,10 +10,7 @@ const initialState = {
 
 export const login = createAsyncThunk("/login", async (params) => {
   try {
-    const { data } = await axios.post(
-      "http://localhost:1337/api/auth/local",
-      params
-    );
+    const { data } = await axios.post("/auth/local", params);
     if (data.jwt) {
       storeUser(data);
     }
@@ -28,10 +25,7 @@ export const login = createAsyncThunk("/login", async (params) => {
 
 export const regist = createAsyncThunk("/register", async (params) => {
   try {
-    const { data } = await axios.post(
-      "http://localhost:1337/api/auth/local/register",
-      params
-    );
+    const { data } = await axios.post("/auth/local/register", params);
     if (data.jwt) {
       storeUser(data);
     }
@@ -46,7 +40,7 @@ export const regist = createAsyncThunk("/register", async (params) => {
 
 export const authMe = createAsyncThunk("/authMe", async () => {
   try {
-    const { data } = await axios.get("http://localhost:1337/api/users/me");
+    const { data } = await axios.get("/users/me");
     return data;
   } catch (error) {
     console.warn({

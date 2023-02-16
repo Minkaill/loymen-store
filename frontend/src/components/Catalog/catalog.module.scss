@@ -1,0 +1,58 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 160px 0px;
+
+  h1 {
+    margin: 0px auto 80px auto;
+    font-weight: 200;
+  }
+}
+
+.catalog {
+  width: 100%;
+  display: inline-grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  .overlay {
+    position: absolute;
+    display: none;
+    svg {
+      font-size: 50px;
+    }
+  }
+
+  .catalog_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 405px;
+
+    img {
+      transition-duration: 0.3s;
+      &:hover {
+        cursor: pointer;
+        transition-duration: 0.3s;
+        opacity: 0.3;
+      }
+    }
+
+    h1 {
+      font-weight: 100;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  }
+}
+
+.loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 160px 0px;
+}
