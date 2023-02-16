@@ -1,0 +1,103 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.osen {
+  width: 100%;
+  display: flex;
+  height: 700px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/fs/cb868d105074753.5f717575745ce.jpg");
+  background-position: center;
+  background-size: 100%;
+
+  h1 {
+    font-weight: 200;
+    font-size: 40px;
+  }
+
+  a {
+    margin-top: 30px;
+    padding: 15px 30px;
+    transition-duration: 0.3s;
+    border: 1px solid white;
+
+    &:hover {
+      transition-duration: 0.3s;
+      background-color: #dde8f6;
+      color: black;
+    }
+  }
+}
+
+.rasprodaja__novinki {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .raprodaja {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 600px;
+    background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/5c96ab105074753.5f7175757522a.jpg");
+    background-position: top;
+    background-size: 100%;
+
+    h1 {
+      font-weight: 200;
+      font-size: 40px;
+    }
+
+    a {
+      margin-top: 30px;
+      padding: 15px 30px;
+      transition-duration: 0.3s;
+      border: 1px solid white;
+
+      &:hover {
+        transition-duration: 0.3s;
+        background-color: #dde8f6;
+        color: black;
+      }
+    }
+  }
+
+  .novinki {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 600px;
+    background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/fs/9e6333105074753.5f71757574c35.jpg");
+    background-position: center;
+    background-size: 100%;
+
+    h1 {
+      font-weight: 200;
+      font-size: 40px;
+    }
+
+    a {
+      margin-top: 30px;
+      padding: 15px 30px;
+      transition-duration: 0.3s;
+      border: 1px solid white;
+
+      &:hover {
+        transition-duration: 0.3s;
+        background-color: #dde8f6;
+        color: black;
+      }
+    }
+  }
+}
