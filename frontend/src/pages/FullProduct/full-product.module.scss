@@ -1,0 +1,56 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product {
+  width: 66vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bag {
+  width: calc(34vw - 64px) !important;
+  padding: 0px 60px;
+  .name {
+    width: 100%;
+    p {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 14px;
+      font-weight: 200;
+      color: #5e5e5e;
+      margin-bottom: 15px;
+    }
+  }
+  span {
+    font-weight: 700;
+    font-size: 20px;
+    background-color: #ffee00;
+  }
+
+  button {
+    width: 100%;
+    border: 1px solid black;
+    padding: 15px 0px;
+    background-color: inherit;
+    transition-duration: 0.3s;
+    margin-top: 50px;
+    font-size: 20px;
+    &:hover {
+      background-color: black;
+      color: white;
+      cursor: pointer;
+      transition-duration: 0.3s;
+    }
+
+    &:disabled {
+      cursor: no-drop;
+    }
+  }
+}
