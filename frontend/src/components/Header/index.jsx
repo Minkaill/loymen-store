@@ -30,7 +30,7 @@ const Header = () => {
         <Link>
           <img width={25} src={fav} alt="" />
         </Link>
-        <Link>
+        <Link to="/cart">
           <img width={25} src={cart} alt="" />
         </Link>
       </div>

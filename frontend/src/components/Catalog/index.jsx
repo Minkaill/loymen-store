@@ -10,17 +10,16 @@ const Catalog = () => {
   const dispatch = useDispatch();
   const { categories, status } = useSelector((state) => state.categories);
   const url = "http://localhost:1337";
-
   console.log(categories);
 
   React.useEffect(() => {
     dispatch(getCategories());
-  }, [dispatch]);
+  }, []);
 
   if (status === "loading") {
     return (
       <div className={styles.loader}>
-        <PropagateLoader color="#36d7b7" />
+        <PropagateLoader color="#000" />
       </div>
     );
   }
@@ -29,20 +28,24 @@ const Catalog = () => {
     <div className={styles.wrapper}>
       <h1>КАТАЛОГ</h1>
       <div className={styles.catalog}>
-        {categories.map(({ attributes, id }) => (
-          <div className={styles.catalog_item}>
-            <div className={styles.overlay}>
-              <BsArrowRight />
+        {Array.isArray(categories) &&
+          categories.map(({ attributes, id }) => (
+            <div key={id} className={styles.catalog_item}>
+              <div className={styles.overlay}>
+                <BsArrowRight />
+              </div>
+              <Link to={`/category/${id}`}>
+                <img
+                  src={url + attributes.image.data.attributes.formats.small.url}
+                  alt=""
+                />
+              </Link>
+              <h1>{attributes.name}</h1>
             </div>
-            <Link to={`/category/${id}`}>
-              <img
-                src={url + attributes.image.data.attributes.formats.small.url}
-                alt=""
-              />
-            </Link>
-            <h1>{attributes.name}</h1>
-          </div>
-        ))}
+          ))}
+      </div>
+      <div className={styles.btn}>
+        <Link to="/catalog">ПОСМОТРЕТЬ ВСЕ</Link>
       </div>
     </div>
   );

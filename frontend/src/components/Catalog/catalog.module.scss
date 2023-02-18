@@ -56,3 +56,24 @@
   margin: auto;
   padding: 160px 0px;
 }
+
+.btn {
+  a {
+    width: 500px;
+    padding: 15px 30px;
+    transition-duration: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    cursor: pointer;
+    border: 0.5px solid black;
+
+    &:hover {
+      transition-duration: 0.3s;
+      border: 1px solid white;
+      background-color: #838e9c;
+      color: white;
+    }
+  }
+}

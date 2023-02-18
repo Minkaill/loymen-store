@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "../../api";
-import { storeUser } from "../../helper";
+import { storeUser, userData } from "../../helper";
 
 const initialState = {
   data: null,
@@ -10,7 +10,7 @@ const initialState = {
 
 export const login = createAsyncThunk("/login", async (params) => {
   try {
-    const { data } = await axios.post("/auth/local", params);
+    const { data } = await axios.post("/auth/local?populate=*", params);
     if (data.jwt) {
       storeUser(data);
     }
@@ -39,8 +39,16 @@ export const regist = createAsyncThunk("/register", async (params) => {
 });
 
 export const authMe = createAsyncThunk("/authMe", async () => {
+  const { jwt } = userData();
   try {
-    const { data } = await axios.get("/users/me");
+    const { data } = await axios.get(
+      "/users/me?populate=*",
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
     return data;
   } catch (error) {
     console.warn({

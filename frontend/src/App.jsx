@@ -8,18 +8,21 @@ import Register from "./pages/Register";
 import { Protector, userData } from "./helper";
 import Logout from "./pages/Logout";
 import PersonalCabinet from "./pages/PersonalCabinet/index";
+import FullCategory from "./pages/FullCategory";
+import Cart from "./pages/Cart";
 
 function App() {
-  const { jwt } = userData();
   return (
     <div className="app">
-      <Header jwt={jwt} />
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/personal-cabinet" element={<PersonalCabinet />} />
+        <Route path="/category/:id" element={<FullCategory />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );

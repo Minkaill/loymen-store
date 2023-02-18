@@ -1,0 +1,120 @@
+.loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 160px 0px;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    max-width: 750px;
+    h1 {
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    span {
+      font-size: 13px;
+      color: #7e7d7d;
+      margin-top: 12px;
+    }
+  }
+
+  .products__items {
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 60px 0px;
+    justify-items: center;
+
+    .product {
+      display: flex;
+      flex-direction: column;
+
+      .gallery_container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+
+      .thumbnails {
+        position: absolute;
+        bottom: 8px;
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+      }
+
+      .thumbnails div {
+        width: 8px;
+        height: 8px;
+        cursor: pointer;
+        background: #aaa;
+        border-radius: 100%;
+      }
+
+      .thumbnails div.highlighted {
+        background-color: #777;
+      }
+
+      .slides {
+        display: grid;
+        grid-auto-flow: column;
+        width: 333px;
+        overflow-y: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .slides > div {
+        scroll-snap-align: start;
+      }
+
+      .slides img {
+        width: 333px;
+        object-fit: contain;
+      }
+
+      .slides::-webkit-scrollbar {
+        display: none;
+      }
+
+      .btn {
+        bottom: 0;
+        left: 290px;
+        bottom: 45px;
+        position: relative;
+        button {
+          border: none;
+          background-color: inherit;
+          position: absolute;
+          cursor: pointer;
+          width: 30px;
+          height: 30px;
+          background-position: center;
+          background-size: 100%;
+          background-repeat: no-repeat;
+          background-image: url("https://cdn-icons-png.flaticon.com/512/126/126471.png");
+        }
+      }
+
+      .info_product {
+        width: 100%;
+        line-height: 22px;
+
+        p {
+          font-size: 13px;
+        }
+        span {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

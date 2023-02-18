@@ -65,6 +65,9 @@
     },
     "phoneNumber": {
       "type": "biginteger"
+    },
+    "Cart": {
+      "type": "json"
     }
   }
 }
