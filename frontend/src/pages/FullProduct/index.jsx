@@ -37,7 +37,7 @@ const FullProduct = () => {
   const cartBtn = data?.cart.find((cartId) => cartId.productId === products.id);
 
   return (
-    <div className={styles.wrapper}>
+    <div key={products.id} className={styles.wrapper}>
       <div className={styles.product}>
         {products.attributes?.image.data.map(({ attributes }) => (
           <img src={url + attributes.formats.medium.url} alt="" />

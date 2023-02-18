@@ -50,6 +50,7 @@
     }
 
     &:disabled {
+      border: 1px solid #eee;
       cursor: no-drop;
     }
   }
