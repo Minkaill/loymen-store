@@ -1,16 +1,20 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { authMe } from "../../redux/slice/authSlice";
-import { getProducts } from "../../redux/slice/productSlice";
-import styles from "./cart.module.scss";
+import styles from "./favorite.module.scss";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getProducts } from "../../redux/slice/productSlice";
+import { authMe } from "../../redux/slice/authSlice";
+import axios from "../../api";
+import { userData } from "../../helper";
 
-const Cart = () => {
+const Favorite = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { data, status } = useSelector((state) => state.auth);
   const { products } = useSelector((state) => state.products);
+  const { userId } = userData();
   console.log(data);
 
   const url = "http://localhost:1337";
@@ -18,8 +22,22 @@ const Cart = () => {
   const cart =
     Array.isArray(products) &&
     products?.filter((product) =>
-      data?.cart?.some((cartId) => product.id === cartId.productId)
+      data?.favorite.some((favoriteId) => product.id === favoriteId.productId)
     );
+
+  const deleteProductInFavorite = async (productId) => {
+    const field = {
+      favorite: [
+        ...data?.favorite.filter((fav) => fav.productId !== productId),
+      ],
+    };
+    try {
+      await axios.put(`/users/${userId}`, field);
+    } catch (error) {
+      console.warn(error);
+      alert(error);
+    }
+  };
 
   React.useEffect(() => {
     dispatch(authMe());
@@ -29,9 +47,9 @@ const Cart = () => {
   if (status === "loading") {
     return <p>Loading...</p>;
   }
-
   return (
     <div className={styles.wrapper}>
+      <h1>ИЗБРАННОЕ</h1>
       <div className={styles.products__items}>
         {Array.isArray(cart) &&
           cart?.map(({ attributes, id }) => (
@@ -50,7 +68,7 @@ const Cart = () => {
                 </div>
               </div>
               <div className={styles.btn}>
-                <button></button>
+                <button onClick={() => deleteProductInFavorite(id)}></button>
               </div>
               <div className={styles.info_product}>
                 <p onClick={() => navigate(`/category/product/${id}`)}>
@@ -65,4 +83,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Favorite;

@@ -12,6 +12,12 @@
   display: flex;
   flex-direction: column;
 
+  h1 {
+    font-weight: 100;
+    background-color: #d2d3d4;
+    padding: 10px 20px;
+  }
+
   .title {
     max-width: 750px;
     h1 {
@@ -29,12 +35,12 @@
     width: 100%;
     display: inline-grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding: 60px 0px;
     justify-items: center;
 
     .product {
       display: flex;
       flex-direction: column;
+      margin-top: 30px;
 
       .gallery_container {
         position: relative;
@@ -101,7 +107,7 @@
           background-position: center;
           background-size: 100%;
           background-repeat: no-repeat;
-          background-image: url("https://cdn-icons-png.flaticon.com/512/126/126471.png");
+          background-image: url("https://cdn-icons-png.flaticon.com/512/2961/2961937.png");
         }
       }
 

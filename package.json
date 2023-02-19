@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "react-icons": "^4.7.1",
-    "react-spinners": "^0.13.8"
+    "react-spinners": "^0.13.8",
+    "strapi-paypal": "^1.0.4"
   }
 }

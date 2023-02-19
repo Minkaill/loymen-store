@@ -27,7 +27,7 @@ const Header = () => {
         <Link to="/personal-cabinet">
           <img src={user} alt="user" />
         </Link>
-        <Link>
+        <Link to="/favorite">
           <img width={25} src={fav} alt="" />
         </Link>
         <Link to="/cart">

@@ -52,7 +52,7 @@
           "localized": true
         }
       },
-      "type": "integer"
+      "type": "decimal"
     },
     "description": {
       "pluginOptions": {

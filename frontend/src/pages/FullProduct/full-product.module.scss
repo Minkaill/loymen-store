@@ -31,6 +31,8 @@
   span {
     font-weight: 700;
     font-size: 20px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
     background-color: #ffee00;
   }
 
@@ -52,6 +54,11 @@
     &:disabled {
       border: 1px solid #eee;
       cursor: no-drop;
+
+      &:hover {
+        text-decoration: line-through;
+        background-color: #5d5d5d;
+      }
     }
   }
 }

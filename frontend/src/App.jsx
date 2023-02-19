@@ -11,6 +11,7 @@ import PersonalCabinet from "./pages/PersonalCabinet/index";
 import FullCategory from "./pages/FullCategory";
 import Cart from "./pages/Cart";
 import FullProduct from "./pages/FullProduct";
+import Favorite from "./pages/Favorite";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/category/:id" element={<FullCategory />} />
         <Route path="/category/product/:id" element={<FullProduct />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/favorite" element={<Favorite />} />
       </Routes>
     </div>
   );
