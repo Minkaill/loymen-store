@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getProducts } from "../../redux/slice/productSlice";
 import { authMe, deleteProductInFavorite } from "../../redux/slice/authSlice";
-import { PropagateLoader } from 'react-spinners';
+import { PropagateLoader } from "react-spinners";
 
 const Favorite = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const Favorite = () => {
 
   const url = "http://localhost:1337";
 
-  const cart =
+  const favorite =
     Array.isArray(products) &&
     products?.filter((product) =>
       data?.favorite.some((favoriteId) => product.id === favoriteId.productId)
@@ -48,8 +48,8 @@ const Favorite = () => {
     <div className={styles.wrapper}>
       <h1>ИЗБРАННОЕ</h1>
       <div className={styles.products__items}>
-        {Array.isArray(cart) &&
-          cart?.map(({ attributes, id }) => (
+        {Array.isArray(favorite) &&
+          favorite?.map(({ attributes, id }) => (
             <div key={id} className={styles.product}>
               <div className={styles.gallery_container}>
                 <div className={styles.thumbnails}></div>

@@ -40,3 +40,17 @@ nav {
     justify-content: center;
   }
 }
+
+.cart {
+  position: relative;
+  span {
+    position: absolute;
+    right: 15px;
+    color: white;
+    font-size: 13px;
+    font-weight: 400;
+    background-color: rgb(244, 121, 121);
+    border-radius: 20px;
+    padding: 2px;
+  }
+}

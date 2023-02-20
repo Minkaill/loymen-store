@@ -5,8 +5,17 @@ import search from "../../assets/search.png";
 import user from "../../assets/user.png";
 import fav from "../../assets/fav.png";
 import cart from "../../assets/cart.png";
+import { useDispatch, useSelector } from "react-redux";
+import { authMe } from "../../redux/slice/authSlice";
 
 const Header = () => {
+  const { data } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(authMe());
+  }, []);
+
   return (
     <header>
       <nav>
@@ -30,9 +39,12 @@ const Header = () => {
         <Link to="/favorite">
           <img width={25} src={fav} alt="" />
         </Link>
-        <Link to="/cart">
-          <img width={25} src={cart} alt="" />
-        </Link>
+        <div className={styles.cart}>
+          <span>{data?.cart?.length}</span>
+          <Link to="/cart">
+            <img width={25} src={cart} alt="" />
+          </Link>
+        </div>
       </div>
     </header>
   );

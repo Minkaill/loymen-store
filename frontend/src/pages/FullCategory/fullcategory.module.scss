@@ -105,6 +105,25 @@
         }
       }
 
+      .btnOff {
+        bottom: 0;
+        left: 290px;
+        bottom: 45px;
+        position: relative;
+        button {
+          border: none;
+          background-color: inherit;
+          position: absolute;
+          cursor: pointer;
+          width: 30px;
+          height: 30px;
+          background-position: center;
+          background-size: 100%;
+          background-repeat: no-repeat;
+          background-image: url("https://cdn-icons-png.flaticon.com/512/9713/9713168.png");
+        }
+      }
+
       .info_product {
         width: 100%;
         line-height: 22px;

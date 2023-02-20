@@ -5,7 +5,8 @@ import { PropagateLoader } from "react-spinners";
 import { userData } from "../../helper";
 import { getCategoryById } from "../../redux/slice/catalogSlice";
 import styles from "./fullcategory.module.scss";
-import { authMe, postProductInCart } from "../../redux/slice/authSlice";
+import { authMe, postProductInFavorite } from "../../redux/slice/authSlice";
+import { getProducts } from "../../redux/slice/productSlice";
 
 const FullCategory = () => {
   const dispatch = useDispatch();
@@ -17,11 +18,11 @@ const FullCategory = () => {
 
   const url = "http://localhost:1337";
 
-  const onSubmitUpdate = async (productId) => {
+  const postProductFavorite = async (productId) => {
     const field = {
       favorite: [...data?.favorite, { productId: Number(productId) }],
     };
-    dispatch(postProductInCart(field));
+    dispatch(postProductInFavorite(field));
   };
 
   React.useEffect(() => {
@@ -64,14 +65,13 @@ const FullCategory = () => {
               </div>
             </div>
             <div
-              style={{
-                overflow:
-                  data?.favorite?.find((fav) => fav.productId === id) &&
-                  "hidden",
-              }}
-              className={styles.btn}
+              className={
+                data?.favorite.find((fav) => fav.productId === id)
+                  ? styles.btnOff
+                  : styles.btn
+              }
             >
-              <button onClick={() => onSubmitUpdate(id)}></button>
+              <button onClick={() => postProductFavorite(id)}></button>
             </div>
             <div className={styles.info_product}>
               <p onClick={() => navigate(`/category/product/${id}`)}>

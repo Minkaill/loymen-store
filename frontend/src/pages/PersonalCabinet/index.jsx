@@ -18,8 +18,7 @@ const PersonalCabinet = () => {
 
   return (
     <div>
-      {username}
-
+      <h1>{username}</h1>
       <Link onClick={handle} to="/logout">
         Выйти из аккаунта
       </Link>

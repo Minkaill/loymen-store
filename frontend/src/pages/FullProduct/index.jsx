@@ -3,32 +3,30 @@ import { useParams } from "react-router-dom";
 import styles from "./full-product.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductId } from "../../redux/slice/productSlice";
-import { authMe } from "../../redux/slice/authSlice";
+import { authMe, postProductInCart } from "../../redux/slice/authSlice";
 import axios from "../../api";
 import { userData } from "../../helper";
 
 const FullProduct = () => {
   const dispatch = useDispatch();
-  const [btnOff, setBtnOff] = React.useState(false);
 
   const { products } = useSelector((state) => state.products);
-  const { userId } = userData();
   const { id } = useParams();
   const { data } = useSelector((state) => state.auth);
 
   const url = "http://localhost:1337";
 
-  const onSubmitUpdate = async () => {
-    const field = {
-      cart: [...data?.cart, { productId: Number(id) }],
-    };
-    try {
-      await axios.put(`/users/${userId}`, field);
-    } catch (error) {
-      console.log(error);
-      alert(error);
-    }
-  };
+  // const onSubmitUpdate = async () => {
+  //   const field = {
+  //     cart: [...data?.cart, { productId: Number(id) }],
+  //   };
+  //   try {
+  //     await axios.put(`/users/${userId}`, field);
+  //   } catch (error) {
+  //     console.log(error);
+  //     alert(error);
+  //   }
+  // };
 
   React.useEffect(() => {
     console.log("RENDER");
@@ -37,8 +35,15 @@ const FullProduct = () => {
   }, []);
 
   const cartBtn = data?.cart?.find(
-    (cartId) => cartId.productId === products.id
+    (cartId) => cartId.productId === products?.id
   );
+
+  const handlePostCart = () => {
+    const field = {
+      cart: [...data?.cart, { productId: Number(id) }],
+    };
+    dispatch(postProductInCart(field));
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -53,7 +58,7 @@ const FullProduct = () => {
           <h1>{products?.attributes?.description}</h1>
         </div>
         <span>$ {products?.attributes?.price}</span>
-        <button disabled={cartBtn} onClick={() => onSubmitUpdate()}>
+        <button disabled={cartBtn} onClick={() => handlePostCart()}>
           Добавить в корзину
         </button>
       </div>

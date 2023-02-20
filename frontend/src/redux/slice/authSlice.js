@@ -83,17 +83,33 @@ export const deleteProductInCart = createAsyncThunk(
   }
 );
 
-export const postProductInCart = createAsyncThunk("/post/product", async () => {
-  const { userId } = userData();
-  try {
-    const { data } = await axios.put(`/users/${userId}`, field);
-    return data?.cart;
-  } catch (error) {
-    console.warn(error);
-    alert(error);
+export const postProductInCart = createAsyncThunk(
+  "/post/product",
+  async (field) => {
+    const { userId } = userData();
+    try {
+      const { data } = await axios.put(`/users/${userId}`, field);
+      return data?.cart;
+    } catch (error) {
+      console.warn(error);
+      alert(error);
+    }
   }
-});
+);
 
+export const postProductInFavorite = createAsyncThunk(
+  "/post/favorite",
+  async (field) => {
+    const { userId } = userData();
+    try {
+      const { data } = await axios.put(`/users/${userId}`, field);
+      return data?.cart;
+    } catch (error) {
+      console.warn(error);
+      alert(error);
+    }
+  }
+);
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -149,6 +165,10 @@ const authSlice = createSlice({
 
       .addCase(postProductInCart.fulfilled, (state, action) => {
         state.data.cart = action.payload;
+      })
+
+      .addCase(postProductInFavorite.fulfilled, (state, action) => {
+        state.data.favorite = action.payload;
       });
   },
 });
