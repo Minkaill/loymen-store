@@ -9,6 +9,7 @@ import { userData } from "../../helper";
 
 const FullProduct = () => {
   const dispatch = useDispatch();
+  const [btnOff, setBtnOff] = React.useState(false);
 
   const { products } = useSelector((state) => state.products);
   const { userId } = userData();
@@ -30,25 +31,28 @@ const FullProduct = () => {
   };
 
   React.useEffect(() => {
+    console.log("RENDER");
     dispatch(getProductId(id));
     dispatch(authMe());
   }, []);
 
-  const cartBtn = data?.cart.find((cartId) => cartId.productId === products.id);
+  const cartBtn = data?.cart?.find(
+    (cartId) => cartId.productId === products.id
+  );
 
   return (
-    <div key={products.id} className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <div className={styles.product}>
-        {products.attributes?.image.data.map(({ attributes }) => (
+        {products?.attributes?.image.data.map(({ attributes }) => (
           <img src={url + attributes.formats.medium.url} alt="" />
         ))}
       </div>
       <div className={styles.bag}>
         <div className={styles.name}>
-          <p>{products.attributes?.name}</p>
-          <h1>{products.attributes?.description}</h1>
+          <p>{products?.attributes?.name}</p>
+          <h1>{products?.attributes?.description}</h1>
         </div>
-        <span>$ {products.attributes?.price}</span>
+        <span>$ {products?.attributes?.price}</span>
         <button disabled={cartBtn} onClick={() => onSubmitUpdate()}>
           Добавить в корзину
         </button>

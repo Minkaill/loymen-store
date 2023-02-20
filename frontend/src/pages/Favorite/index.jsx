@@ -4,9 +4,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getProducts } from "../../redux/slice/productSlice";
-import { authMe } from "../../redux/slice/authSlice";
-import axios from "../../api";
-import { userData } from "../../helper";
+import { authMe, deleteProductInFavorite } from "../../redux/slice/authSlice";
+import { PropagateLoader } from 'react-spinners';
 
 const Favorite = () => {
   const dispatch = useDispatch();
@@ -14,8 +13,6 @@ const Favorite = () => {
 
   const { data, status } = useSelector((state) => state.auth);
   const { products } = useSelector((state) => state.products);
-  const { userId } = userData();
-  console.log(data);
 
   const url = "http://localhost:1337";
 
@@ -25,18 +22,13 @@ const Favorite = () => {
       data?.favorite.some((favoriteId) => product.id === favoriteId.productId)
     );
 
-  const deleteProductInFavorite = async (productId) => {
+  const deleteFav = (productId) => {
     const field = {
       favorite: [
         ...data?.favorite.filter((fav) => fav.productId !== productId),
       ],
     };
-    try {
-      await axios.put(`/users/${userId}`, field);
-    } catch (error) {
-      console.warn(error);
-      alert(error);
-    }
+    dispatch(deleteProductInFavorite(field));
   };
 
   React.useEffect(() => {
@@ -45,8 +37,13 @@ const Favorite = () => {
   }, []);
 
   if (status === "loading") {
-    return <p>Loading...</p>;
+    return (
+      <div className={styles.loader}>
+        <PropagateLoader color="#000" />
+      </div>
+    );
   }
+
   return (
     <div className={styles.wrapper}>
       <h1>ИЗБРАННОЕ</h1>
@@ -68,7 +65,7 @@ const Favorite = () => {
                 </div>
               </div>
               <div className={styles.btn}>
-                <button onClick={() => deleteProductInFavorite(id)}></button>
+                <button onClick={() => deleteFav(id)}></button>
               </div>
               <div className={styles.info_product}>
                 <p onClick={() => navigate(`/category/product/${id}`)}>

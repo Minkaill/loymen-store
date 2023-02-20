@@ -5,14 +5,13 @@ import { PropagateLoader } from "react-spinners";
 import { userData } from "../../helper";
 import { getCategoryById } from "../../redux/slice/catalogSlice";
 import styles from "./fullcategory.module.scss";
-import axios from "../../api";
-import { authMe } from "../../redux/slice/authSlice";
+import { authMe, postProductInCart } from "../../redux/slice/authSlice";
 
 const FullCategory = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { id } = useParams();
-  const { userId } = userData();
   const { categories, status } = useSelector((state) => state.categories);
   const { data } = useSelector((state) => state.auth);
 
@@ -22,12 +21,7 @@ const FullCategory = () => {
     const field = {
       favorite: [...data?.favorite, { productId: Number(productId) }],
     };
-    try {
-      await axios.put(`/users/${userId}`, field);
-    } catch (error) {
-      console.log(error);
-      alert(error);
-    }
+    dispatch(postProductInCart(field));
   };
 
   React.useEffect(() => {
@@ -72,7 +66,7 @@ const FullCategory = () => {
             <div
               style={{
                 overflow:
-                  data?.favorite.find((fav) => fav.productId === id) &&
+                  data?.favorite?.find((fav) => fav.productId === id) &&
                   "hidden",
               }}
               className={styles.btn}

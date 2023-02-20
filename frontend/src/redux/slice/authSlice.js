@@ -41,19 +41,55 @@ export const regist = createAsyncThunk("/register", async (params) => {
 export const authMe = createAsyncThunk("/authMe", async () => {
   const { jwt } = userData();
   try {
-    const { data } = await axios.get(
-      "/users/me?populate=*",
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
+    const { data } = await axios.get("/users/me?populate=*", {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
     return data;
   } catch (error) {
     console.warn({
       error: error?.message,
     });
+    alert(error);
+  }
+});
+
+export const deleteProductInFavorite = createAsyncThunk(
+  "/delete/favorite",
+  async (field) => {
+    const { userId } = userData();
+    try {
+      const { data } = await axios.put(`/users/${userId}`, field);
+      return data?.favorite;
+    } catch (error) {
+      console.warn(error);
+      alert(error);
+    }
+  }
+);
+
+export const deleteProductInCart = createAsyncThunk(
+  "/delete/cart",
+  async (field) => {
+    const { userId } = userData();
+    try {
+      const { data } = await axios.put(`/users/${userId}`, field);
+      return data?.cart;
+    } catch (error) {
+      console.warn(error);
+      alert(error);
+    }
+  }
+);
+
+export const postProductInCart = createAsyncThunk("/post/product", async () => {
+  const { userId } = userData();
+  try {
+    const { data } = await axios.put(`/users/${userId}`, field);
+    return data?.cart;
+  } catch (error) {
+    console.warn(error);
     alert(error);
   }
 });
@@ -101,6 +137,18 @@ const authSlice = createSlice({
       .addCase(authMe.rejected, (state, action) => {
         state.error = action.payload;
         state.status = "loading";
+      })
+
+      .addCase(deleteProductInFavorite.fulfilled, (state, action) => {
+        state.data.favorite = action.payload;
+      })
+
+      .addCase(deleteProductInCart.fulfilled, (state, action) => {
+        state.data.cart = action.payload;
+      })
+
+      .addCase(postProductInCart.fulfilled, (state, action) => {
+        state.data.cart = action.payload;
       });
   },
 });
