@@ -105,7 +105,7 @@ const Cart = () => {
           </div>
 
           <div className={styles.payment}>
-            {jwt && (
+            {!jwt && (
               <div className={styles.not_auth}>
                 <p>Войдите в систему, для оформления заказа!</p>
                 <button onClick={() => navigate("/")}>ВОЙТИ</button>

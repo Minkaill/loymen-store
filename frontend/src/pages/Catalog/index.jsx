@@ -1,23 +1,35 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { PropagateLoader } from "react-spinners";
-import { userData } from "../../helper";
-import { getCategoryById } from "../../redux/slice/catalogSlice";
-import styles from "./fullcategory.module.scss";
+import { getCategories, getCategoryById } from "../../redux/slice/catalogSlice";
+import styles from "./catalog.module.scss";
+import axios from "../../api";
 import { authMe, postProductInFavorite } from "../../redux/slice/authSlice";
 import { getProducts } from "../../redux/slice/productSlice";
+import { useNavigate } from "react-router-dom";
 
-const FullCategory = () => {
+const Catalog = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [catalog, setCatalog] = React.useState([]);
 
-  const { id } = useParams();
-  const { categories, status } = useSelector((state) => state.categories);
-  console.log(categories)
+  const { categories } = useSelector((state) => state.categories);
   const { data } = useSelector((state) => state.auth);
+  const { products } = useSelector((state) => state.products);
+  console.log(products);
 
   const url = "http://localhost:1337";
+
+  React.useEffect(() => {
+    dispatch(authMe());
+    dispatch(getProducts());
+    axios
+      .get("/categories?populate=*")
+      .then(({ data }) => setCatalog(data?.data))
+      .catch((error) => {
+        console.warn(error);
+        alert(error);
+      });
+  }, []);
 
   const postProductFavorite = async (productId) => {
     const field = {
@@ -26,31 +38,23 @@ const FullCategory = () => {
     dispatch(postProductInFavorite(field));
   };
 
-  React.useEffect(() => {
+  const getProductsById = (id) => {
     dispatch(getCategoryById(id));
     dispatch(authMe());
-  }, []);
-
-  if (status === "loading") {
-    return (
-      <div className={styles.loader}>
-        <PropagateLoader color="#000" />
-      </div>
-    );
-  }
+  };
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.title}>
-        <h1>
-          {categories.attributes?.name === "Обувь" ? "Мужская" : "Мужские"}{" "}
-          {categories.attributes?.name}
-        </h1>
-        <span>{categories.attributes?.description}</span>
+      <div className={styles.catalog}>
+        {catalog?.map(({ attributes, id }) => (
+          <h1 key={id} onClick={() => getProductsById(id)}>
+            {attributes.name}
+          </h1>
+        ))}
       </div>
 
       <div className={styles.products__items}>
-        {categories.attributes?.products.data.map(({ attributes, id }) => (
+        {categories?.attributes?.products.data.map(({ attributes, id }) => (
           <div key={id} className={styles.product}>
             <div className={styles.gallery_container}>
               <div className={styles.thumbnails}></div>
@@ -87,4 +91,4 @@ const FullCategory = () => {
   );
 };
 
-export default FullCategory;
+export default Catalog;
