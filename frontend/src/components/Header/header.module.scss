@@ -1,6 +1,7 @@
 header {
   width: 100%;
   display: flex;
+  background-color: white;
   justify-content: space-between;
   align-items: center;
   font-weight: 200;
@@ -32,12 +33,35 @@ nav {
   width: 400px;
   display: flex;
   justify-content: right;
+  position: relative;
   align-items: center;
   a {
     margin-left: 15px;
     display: flex;
     align-items: center;
+    z-index: 1;
     justify-content: center;
+  }
+
+  .inputOn {
+    width: 150px;
+    border: 1px solid rgb(212, 210, 210);
+    position: absolute;
+    border-radius: 4px;
+    left: 135px;
+    outline: none;
+    padding: 3px 28px 3px 3px;
+  }
+
+  .inputOff {
+    display: none;
+    width: 150px;
+    border: 1px solid rgb(212, 210, 210);
+    position: absolute;
+    border-radius: 4px;
+    left: 135px;
+    outline: none;
+    padding: 3px 28px 3px 3px;
   }
 }
 

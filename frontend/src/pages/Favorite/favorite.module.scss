@@ -14,8 +14,11 @@
 
   h1 {
     font-weight: 100;
-    background-color: #d2d3d4;
+    background-color: #f7f8fa;
     padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .title {

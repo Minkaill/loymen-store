@@ -10,6 +10,7 @@ import { authMe } from "../../redux/slice/authSlice";
 
 const Header = () => {
   const { data } = useSelector((state) => state.auth);
+  const [inputOff, setInputOff] = React.useState(false);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -30,7 +31,11 @@ const Header = () => {
       </div>
 
       <div className={styles.user_nav}>
-        <Link>
+        <input
+          className={inputOff ? styles.inputOn : styles.inputOff}
+          type="text"
+        />
+        <Link onClick={() => setInputOff(!inputOff)}>
           <img width={25} src={search} alt="" />
         </Link>
         <Link to="/personal-cabinet">
