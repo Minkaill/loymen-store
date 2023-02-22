@@ -2,11 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
-import { userData } from "../../helper";
 import { getCategoryById } from "../../redux/slice/catalogSlice";
 import styles from "./fullcategory.module.scss";
 import { authMe, postProductInFavorite } from "../../redux/slice/authSlice";
-import { getProducts } from "../../redux/slice/productSlice";
 
 const FullCategory = () => {
   const dispatch = useDispatch();
@@ -14,7 +12,7 @@ const FullCategory = () => {
 
   const { id } = useParams();
   const { categories, status } = useSelector((state) => state.categories);
-  console.log(categories)
+  console.log(categories);
   const { data } = useSelector((state) => state.auth);
 
   const url = "http://localhost:1337";

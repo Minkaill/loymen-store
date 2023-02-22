@@ -39,8 +39,24 @@ nav {
     margin-left: 15px;
     display: flex;
     align-items: center;
-    z-index: 1;
+    flex-direction: column;
+    position: relative;
     justify-content: center;
+
+    .filter__items {
+      width: 500px;
+      top: 24px;
+      right: -11px;
+      padding: 20px 10px;
+      border-radius: 5px;
+      flex-direction: column;
+      background-color: white;
+      position: absolute;
+
+      p {
+        width: 100%;
+      }
+    }
   }
 
   .inputOn {
@@ -71,6 +87,7 @@ nav {
     position: absolute;
     right: 15px;
     color: white;
+    z-index: 1;
     font-size: 13px;
     font-weight: 400;
     background-color: rgb(244, 121, 121);

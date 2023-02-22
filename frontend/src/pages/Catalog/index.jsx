@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories, getCategoryById } from "../../redux/slice/catalogSlice";
+import { getCategoryById } from "../../redux/slice/catalogSlice";
 import styles from "./catalog.module.scss";
 import axios from "../../api";
 import { authMe, postProductInFavorite } from "../../redux/slice/authSlice";

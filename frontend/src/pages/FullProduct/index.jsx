@@ -16,17 +16,6 @@ const FullProduct = () => {
 
   const url = "http://localhost:1337";
 
-  // const onSubmitUpdate = async () => {
-  //   const field = {
-  //     cart: [...data?.cart, { productId: Number(id) }],
-  //   };
-  //   try {
-  //     await axios.put(`/users/${userId}`, field);
-  //   } catch (error) {
-  //     console.log(error);
-  //     alert(error);
-  //   }
-  // };
 
   React.useEffect(() => {
     console.log("RENDER");
